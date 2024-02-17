@@ -1,0 +1,254 @@
+# U is a predefined unit of measure that means 19.05mm, which is MX spacing
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: 1
+  py: px
+  fil: 1.25
+points:
+  key:
+    padding: 1ky+0.5
+    spread: 1kx
+  zones:
+    matrix:
+      anchor:
+        shift: [100, -100]
+
+      columns:
+        pinky:
+          key.column_net: P10
+          key.tags:
+            regulal:
+        pinky2:
+          key.column_net: P16
+          key.tags:
+            regulal:
+        ring:
+          key.column_net: P14
+          key.stagger: 0.3ky
+          key.tags:
+            regulal:
+        middle:
+          key.column_net: P15
+          key.stagger: 0.15ky
+          #key.spread: 1.3ky
+          key.tags:
+            regulal:
+        index:
+          key.column_net: P18
+          key.stagger: -0.15ky
+          key.tags:
+            regulal:
+        inner:
+          key.column_net: P19
+          key.stagger: -0.15ky
+          key.tags:
+            regulal:
+      rows:
+        bottom:
+          row_net: P9
+        home:
+          row_net: P8
+        top:
+          row_net: P7
+    thumb:
+      anchor:
+        ref: matrix_middle_bottom
+        shift: [0.6kx, -1.50ky]
+      columns:
+        cozy:
+          key.column_net: P20
+          key.name: thumb_cozy
+          key.row_net: P9
+          key.tags:
+            regulal:
+        tucky:
+          key.column_net: P20
+          key.name: thumb_tucky
+          key.row_net: P8
+          key.spread: kx
+          key.splay: -15
+          key.origin: [-0.5kx, -0.5ky]
+          key.tags:
+            regulal:
+        reachy:
+          key.column_net: P20
+          key.name: thumb_reachy
+          key.row_net: P7
+          key.splay: -15
+          key.shift: [0kx, 0.25ky+1]
+          key.origin: [-0.5kx, -0.5ky]
+          key.rotate: 90
+          key.width: 1.5kx
+          key.tags:
+            bigger:
+  #rotate: -15
+  #mirror: &mirror
+  #  ref: thumb_reachy
+  #  distance: 3kx
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+      bound:
+      fillet: fil
+    - what: rectangle
+      where: bigger
+      bound:
+      size: [1.5px, py]
+      fillet: fil
+
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_pinky_top
+          shift: [-0.5kx-px, 0.5ky+py]
+        - ref: matrix_pinky2_top
+          shift: [0.5kx-px, 0.5ky+py]
+        - ref: matrix_ring_top
+          shift: [-0.5kx-px, 0.5ky+py]
+        - ref: matrix_ring_top
+          shift: [0.5kx-px, 0.5ky+py]
+        - ref: matrix_middle_top
+          shift: [-0.5kx-px, 0.5ky+py]
+        - ref: matrix_middle_top
+          shift: [0.5kx+px, 0.5ky+py]
+        - ref: matrix_index_top
+          shift: [-0.5kx+px, 0.5ky+py]
+        - ref: matrix_index_top
+          shift: [0.5kx+px, 0.5ky+py]
+        - ref: matrix_inner_top
+          shift: [-0.5kx+px, 0.5ky+py]
+        - ref: matrix_inner_top
+          shift: [0.5kx+px, 0.5ky+py]
+        - ref: matrix_inner_top
+          shift: [-0.5kx+kx+px, 0.5ky-0.15ky+py]
+        - ref: matrix_inner_top
+          shift: [0.5kx+kx+1.45+1.834201+px, 0.5ky-0.15ky+py]
+        - ref: thumb_reachy
+          shift: [0.75kx+px, -0.5ky-py]
+        - ref: thumb_reachy
+          shift: [-0.75kx-px, -0.5ky-py]
+        - ref: thumb_tucky
+          shift: [0.5kx-px, -0.5ky-py]
+        - ref: thumb_cozy
+          shift: [-0.5kx-px, -0.5ky-py]
+        - ref: matrix_pinky2_bottom
+          shift: [1.6kx+px, -0.5ky-py]
+        #- ref: matrix_pinky2_bottom
+        #  shift: [0.5kx+px,-0.5ky-py]
+        - ref: matrix_pinky_bottom
+          shift: [-0.5kx-px, -0.5ky-py]
+      fillet: fil
+  panel:
+    - what: outline
+      name: raw
+      fillet: fil
+
+  keycaps_outline:
+    - what: rectangle
+      where: regulal
+      bound: false
+      size: [kx-0.5, ky-0.5]
+  keycaps_outline15:
+    - what: rectangle
+      where: bigger
+      bound: false
+      size: [1.5kx-0.5, ky-0.5]
+  keycaps: [keycaps_outline, keycaps_outline15]
+
+  keyboard:
+    - name: board
+    - operation: subtract
+      name: keycaps
+
+pcbs:
+  sunflower:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          rotate: 180
+          shift: [0, -5]
+
+      nicenano:
+        what: promicro_pretty
+        # params:
+        #   orientation: "down"
+        where:
+          ref: matrix_inner_home
+          shift: [kx+2, +0.25ky]
+          rotate: -90
+
+      oled:
+        what: nice_view
+        params:
+          SDA: P2
+          SCL: P3
+          CS: P9
+        where:
+          ref: matrix_inner_home
+          shift: [kx+2, +0.25ky-18.5]
+          rotate: 90
+
+      reset:
+        what: button
+        params:
+          from: gnd
+          to: RST
+          side: "F"
+        where:
+          ref: matrix_inner_home
+          shift: [0.8kx, -1.0ky-2.5]
+          rotate: 90
+      resetBack:
+        what: button
+        params:
+          from: gnd
+          to: RST
+          side: "B"
+        where:
+          ref: matrix_inner_home
+          shift: [0.8kx, -1.0ky-2.5]
+          rotate: 90
+      slider:
+        what: slider
+        params:
+          from: gnd
+          to: RAW
+          side: "F"
+        where:
+          ref: matrix_inner_home
+          shift: [1.3kx+6.25, -1.0ky-2.5]
+          rotate: -90
+      sliderBack:
+        what: slider
+        params:
+          from: gnd
+          to: RAW
+          side: "F"
+        where:
+          ref: matrix_inner_home
+          shift: [1.3kx+6.25, -1.0ky-2.5]
+          rotate: -90
