@@ -201,21 +201,21 @@ pcbs:
           shift: [kx+2, +0.25ky]
           rotate: -90
 
-      oled:
-        what: nice_view
-        params:
-          SDA: P2
-          SCL: P3
-          CS: P9
-        where:
-          ref: matrix_inner_home
-          shift: [kx+2, +0.25ky-18.5]
-          rotate: 90
+      # oled:
+      #   what: nice_view
+      #   params:
+      #     SDA: P2
+      #     SCL: P3
+      #     CS: P9
+      #   where:
+      #     ref: matrix_inner_home
+      #     shift: [kx+2, +0.25ky-18.5]
+      #     rotate: 90
 
       reset:
         what: button
         params:
-          from: gnd
+          from: GND
           to: RST
           side: "F"
         where:
@@ -225,7 +225,7 @@ pcbs:
       resetBack:
         what: button
         params:
-          from: gnd
+          from: GND
           to: RST
           side: "B"
         where:
@@ -235,7 +235,7 @@ pcbs:
       slider:
         what: slider
         params:
-          from: gnd
+          from: GND
           to: RAW
           side: "F"
         where:
@@ -245,7 +245,7 @@ pcbs:
       sliderBack:
         what: slider
         params:
-          from: gnd
+          from: GND
           to: RAW
           side: "F"
         where:
