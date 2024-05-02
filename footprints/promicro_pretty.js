@@ -11,8 +11,8 @@ module.exports = {
 		P0: { type: 'net', value: 'P0' },     // D0 - Serial RX
 		// GND Pin
 		// GND Pin
-		P2: { type: 'net', value: 'SDA' },    // D2 - I2C SDA
-		P3: { type: 'net', value: 'SCL' },    // D3 - I2C SCL
+		P2: { type: 'net', value: 'P2' },    // D2 - I2C SDA
+		P3: { type: 'net', value: 'P3' },    // D3 - I2C SCL
 		P4: { type: 'net', value: 'P4' },     // D4 - A6
 		P5: { type: 'net', value: 'P5' },     // Arduino: D5 (PWM) -> Elite C: D12 (PWM)
 		P6: { type: 'net', value: 'P6' },     // D6 - A7 (PWM)
@@ -28,9 +28,9 @@ module.exports = {
 		P20: { type: 'net', value: 'P20' },   // D20 - A2
 		P19: { type: 'net', value: 'P19' },   // D19 - A1
 		P18: { type: 'net', value: 'P18' },   // D18 - A0
-		P15: { type: 'net', value: 'SCLK' },  // D15 - SCLK
-		P14: { type: 'net', value: 'MISO' },  // D14 - MISO
-		P16: { type: 'net', value: 'MOSI' },  // D16 - MOSI
+		P15: { type: 'net', value: 'P15' },  // D15 - SCLK
+		P14: { type: 'net', value: 'P14' },  // D14 - MISO
+		P16: { type: 'net', value: 'P16' },  // D16 - MOSI
 		P10: { type: 'net', value: 'P10' },   // D10 - A10 (PWM)
 	},
 	body: p => {
