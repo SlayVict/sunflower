@@ -164,7 +164,7 @@ outlines:
 
   keyboard:
     - name: board
-    - operation: subtract
+    - operation: stack
       name: keycaps
 
 pcbs.sunflower:
@@ -201,23 +201,10 @@ pcbs.sunflower:
 
     nicenano:
       what: promicro_pretty
-      # params:
-      #   orientation: "down"
       where:
         ref: matrix_inner_home
         shift: [kx+2, +0.25ky]
         rotate: -90
-
-    # oled:
-    #   what: nice_view
-    #   params:
-    #     SDA: P2
-    #     SCL: P3
-    #     CS: Old9
-    #   where:
-    #     ref: matrix_inner_home
-    #     shift: [kx+2, +0.25ky-18.5]
-    #     rotate: 90
 
     reset:
       what: button
