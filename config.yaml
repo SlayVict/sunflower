@@ -1,20 +1,23 @@
 # U is a predefined unit of measure that means 19.05mm, which is MX spacing
 units:
   # Proxy Spacing Variables
-  kx: cx
-  ky: cy
+  kx: cx # 18mm Choc X spacing
+  ky: cy # 17mm Choc Y spacing
   # Padding Variables
   px: 1
   py: px
   fil: 1.25
+  dpx: 4
+  dpy: 4
+  screwSize: 1.5
 points:
   key:
     padding: 1ky+0.5
     spread: 1kx
   zones:
     matrix:
-      anchor:
-        shift: [100, -100]
+      #anchor:
+      #  shift: [100, -100]
 
       columns:
         pinky:
@@ -90,7 +93,7 @@ points:
   #  distance: 3kx
 
 outlines:
-  raw:
+  _raw:
     - what: rectangle
       where: true
       size: [px, py]
@@ -145,22 +148,45 @@ outlines:
         - ref: matrix_pinky_bottom
           shift: [-0.5kx-px, -0.5ky-py]
       fillet: fil
-  panel:
-    - what: outline
-      name: raw
-      fillet: fil
 
-  keycaps_outline:
+  _mounting:
+    - what: circle
+      radius: screwSize
+      where:
+        ref: [matrix_pinky_top]
+        shift: [0.5kx, -0.5ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: [matrix_pinky_home]
+        shift: [0.5kx, -0.5ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: [matrix_inner_top]
+        shift: [0.5kx, -0.5ky]
+    - what: circle
+      radius: screwSize
+      where:
+        ref: [thumb_reachy]
+        shift: [0.5kx, 0.5ky]
+
+  circuitboard:
+    - name: board
+    - operation: stack
+      name: _mounting
+
+  _keycaps_outline:
     - what: rectangle
       where: regulal
       bound: false
       size: [kx-0.5, ky-0.5]
-  keycaps_outline15:
+  _keycaps_outline15:
     - what: rectangle
       where: bigger
       bound: false
       size: [1.5kx-0.5, ky-0.5]
-  keycaps: [keycaps_outline, keycaps_outline15]
+  keycaps: [_keycaps_outline, _keycaps_outline15]
 
   keyboard:
     - name: board
