@@ -6,10 +6,11 @@ Corne like keyboard I made to tinker with ergogen.
 
 ## Components
 
-- khail chic brown
+- khail choc brown
 - nice! nano v2
 - Li POI 301230 batteries
 - batteries connector I honestly don't know the name of
 - Reset Switch SPID 4-pin Flat
 - Power Switch - Micro SMD SPOT
+- khail choc hotswap sockets
   
