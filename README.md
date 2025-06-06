@@ -1,6 +1,6 @@
 # Sunflower
 
-Corne like keyboard I made to tinker with ergogen.
+Corne like keyboard I made to tinker with ergogen. Case model is not ready to share
 
 ![PXL_20250519_135355179](https://github.com/user-attachments/assets/33d0ad89-d83e-436c-801d-4cb2cea63370)
 
